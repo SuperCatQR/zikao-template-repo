@@ -42,6 +42,14 @@ your-repo/
 
 ## 快速开始
 
+### 首次使用检查清单
+
+- [ ] Python 3.8+ 已安装（`python --version`）
+- [ ] Git 已安装（`git --version`）
+- [ ] Git LFS 已安装（`git lfs version`）
+- [ ] 仓库已从模板创建（而非 fork）
+- [ ] 本地已克隆（`git clone`）
+
 ### 安装依赖
 
 ```bash
@@ -50,6 +58,7 @@ pip install -r requirements-dev.txt
 
 # Git LFS（首次使用）
 git lfs install
+git lfs pull  # 拉取大文件
 ```
 
 ### 新增省份
@@ -140,6 +149,55 @@ test(build): 补充 split_frontmatter 测试
 ### 课程页检查清单
 
 发布前必过 `ops/{province}/course-review-checklist.md` 所有项。
+
+## 常见问题
+
+### 构建错误
+
+**Q: `ModuleNotFoundError: No module named 'build_course_pages'`**
+
+```bash
+# 检查是否有 tests/conftest.py
+ls tests/conftest.py
+
+# 若无，从模板仓库复制
+git checkout origin/main -- tests/conftest.py
+```
+
+**Q: 构建后 CSS 样式丢失**
+
+```bash
+# 检查 --base 参数是否正确
+python scripts/build-course-pages.py --base /{your-repo}/
+
+# 本地预览必须使用 --base /
+python scripts/build-course-pages.py --base /
+```
+
+**Q: 中文路径乱码**
+
+```bash
+# Windows PowerShell 设置 UTF-8
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+chcp 65001
+```
+
+### Git LFS 问题
+
+**Q: 文件显示为指针而非实际内容**
+
+```bash
+git lfs pull
+```
+
+**Q: 推送时 LFS 配额不足**
+
+```bash
+# 检查 LFS 使用量
+git lfs ls-files --size
+
+# 清理历史大文件（需 BFG 或 git-filter-repo）
+```
 
 ## 许可
 
