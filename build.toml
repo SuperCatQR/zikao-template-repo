@@ -7,13 +7,13 @@
 # - 脚本需实现 expand_env_vars() 函数解析
 
 [paths]
-courses_dir     = "${ZIKAO_COURSES_DIR:content/{province}/courses}"
-majors_dir      = "${ZIKAO_MAJORS_DIR:content/{province}/majors}"
+courses_dir     = "${ZIKAO_COURSES_DIR:content/example/courses}"
+majors_dir      = "${ZIKAO_MAJORS_DIR:content/example/majors}"
 templates_dir   = "${ZIKAO_TEMPLATES_DIR:scripts/templates}"
 out_dir         = "${ZIKAO_OUT_DIR:site/courses}"
 site_dir        = "${ZIKAO_SITE_DIR:site}"
 
 [source_link_monitor]
-baseline        = "${ZIKAO_BASELINE:ops/{province}/source-links.baseline.json}"
+baseline        = "${ZIKAO_BASELINE:ops/example/source-links.baseline.json}"
 report          = "${ZIKAO_REPORT:site/source-link-report.md}"
 summary         = "${ZIKAO_SUMMARY:site/source-link-report.json}"
